@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { TournamentFee } from '../entities/tournament-fees.entity';
 
@@ -8,5 +8,13 @@ export class TournamentFeesService {
 
   async getFeesById(feeId: number): Promise<TournamentFee | null> {
     return this.tournamentFeeModel.findByPk(feeId);
+  }
+
+  async deleteFeesById(feeId: number): Promise<void> {
+    const fee = await this.tournamentFeeModel.findByPk(feeId);
+    if (!fee) {
+      throw new NotFoundException(`Tournament fee with ID ${feeId} not found.`);
+    }
+    await fee.destroy();
   }
 }
