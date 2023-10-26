@@ -9,7 +9,12 @@ export class TournamentFeesService {
   async getFeesById(feeId: number): Promise<TournamentFee | null> {
     return this.tournamentFeeModel.findByPk(feeId);
   }
-
+  async getAllTournamentFees(): Promise<TournamentFee[]> {
+    return this.tournamentFeeModel.findAll();
+  }
+  async createTournamentFee(data: Partial<TournamentFee>): Promise<TournamentFee> {
+    return this.tournamentFeeModel.create(data);
+  }
   async deleteFeesById(feeId: number): Promise<void> {
     const fee = await this.tournamentFeeModel.findByPk(feeId);
     if (!fee) {

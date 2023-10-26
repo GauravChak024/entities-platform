@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config'
 import { SequelizeModule } from '@nestjs/sequelize';
 import { PrizesModule } from './modules/prizes/prizes.module';
 import { TeamMembersModule } from './modules/team-members/team-members.module';
@@ -12,27 +13,26 @@ import { CoinTransactionsModule } from './modules/coin-transactions/coin-transac
 import { CoinPackagesModule } from './modules/coin-packages/coin-packages.module'; 
 import { UserCoinPurchasesModule } from './modules/user-coin-purchases/user-coin-purchases.module'; 
 
-
-
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     SequelizeModule.forRoot({
       dialect: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: '<username>',
-      password: '<pw>',
-      database: '<database_name>',
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT, 10),
+      username: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
       autoLoadModels: true,
-      synchronize: true, // to be set to false later
+      synchronize: false, 
     }),
+    UsersModule,
     PrizesModule,
     TeamMembersModule,
     TeamsModule,
     TournamentFeesModule,
     TournamentRegistrationsModule,
     TournamentsModule,
-    UsersModule,
     CoinsModule,
     CoinTransactionsModule,
     CoinPackagesModule,

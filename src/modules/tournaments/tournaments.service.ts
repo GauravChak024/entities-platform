@@ -10,6 +10,13 @@ export class TournamentsService {
     return this.tournamentModel.findByPk(tournamentId);
   }
   
+  async getAllTournaments(): Promise<Tournament[]> {
+    return this.tournamentModel.findAll();
+  }
+  async createTournament(data: Partial<Tournament>): Promise<Tournament> {
+    return this.tournamentModel.create(data);
+  }
+  
   async deleteTournamentById(tournamentId: number): Promise<void> {
     const tournament = await this.tournamentModel.findByPk(tournamentId);
     if (!tournament) {

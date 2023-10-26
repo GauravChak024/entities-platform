@@ -34,14 +34,14 @@ export class Team extends Model<Team> {
 
   @Column({ 
     type: DataType.DATE, 
-    defaultValue: DataType.NOW 
+    allowNull: false,
+    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
   })
   created_at: Date;
 
-//   @Column({ type: DataType.DATE, defaultValue: DataType.NOW, onUpdate: DataType.NOW })
-//   updated_at: Date;
   @Column({
     type: DataType.DATE,
+    allowNull: false,
     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
   })
   updated_at: Date;

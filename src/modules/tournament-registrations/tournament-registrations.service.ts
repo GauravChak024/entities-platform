@@ -5,10 +5,16 @@ import { TournamentRegistration } from '../entities/tournament-registrations.ent
 @Injectable()
 export class TournamentRegistrationsService {
   constructor(
-    @InjectModel(TournamentRegistration) private readonly registrationModel: typeof TournamentRegistration,
+    @InjectModel(TournamentRegistration) private readonly tournamentRegistrationModel: typeof TournamentRegistration,
   ) {}
 
+  async getAllTournamentRegistrations(): Promise<TournamentRegistration[]> {
+    return this.tournamentRegistrationModel.findAll();
+  }
+  async createTournamentRegistration(data: Partial<TournamentRegistration>): Promise<TournamentRegistration> {
+    return this.tournamentRegistrationModel.create(data);
+  }
   async getTournamentRegistrationById(registrationId: number): Promise<TournamentRegistration | null> {
-    return this.registrationModel.findByPk(registrationId);
+    return this.tournamentRegistrationModel.findByPk(registrationId);
   }
 }
