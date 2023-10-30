@@ -22,17 +22,4 @@ export class CoinTransaction extends Model<CoinTransaction> {
 
   @BelongsTo(() => User)
   user: User;
-
-  @Column({ 
-    type: DataType.DATE, 
-    allowNull: false,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')})
-  created_at: Date;
-
-  @Column({
-    type: DataType.DATE,
-    allowNull: false,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-  })
-  updated_at: Date;
 }

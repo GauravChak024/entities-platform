@@ -14,17 +14,4 @@ export class CoinPackage extends Model<CoinPackage> {
 
   @Column({ type: DataType.INTEGER, allowNull: false })
   coins_in_package: number;
-
-  @Column({ 
-    type: DataType.DATE, 
-    allowNull: false,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')})
-  created_at: Date;
-
-  @Column({
-    type: DataType.DATE,
-    allowNull: false,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-  })
-  updated_at: Date;
 }

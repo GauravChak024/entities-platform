@@ -59,18 +59,4 @@ export class Tournament extends Model<Tournament> {
     allowNull: false
   })
   tournament_type: string;
-
-  @Column({ 
-    type: DataType.DATE, 
-    allowNull: false,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') })
-  created_at: Date;
-
-
-  @Column({
-    type: DataType.DATE,
-    allowNull: false,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-  })
-  updated_at: Date;
 }

@@ -31,18 +31,4 @@ export class Team extends Model<Team> {
     defaultValue: 0,
   })
   current_team_size: number;
-
-  @Column({ 
-    type: DataType.DATE, 
-    allowNull: false,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-  })
-  created_at: Date;
-
-  @Column({
-    type: DataType.DATE,
-    allowNull: false,
-    defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-  })
-  updated_at: Date;
 }
